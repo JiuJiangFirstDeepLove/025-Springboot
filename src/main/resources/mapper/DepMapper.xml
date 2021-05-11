@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gxuwz.zjh.mapper.DepMapper">
+
+    <select id="findDepById" resultType="Department" parameterType="Department">
+        select * from sys_department where dep_id = #{depId}
+    </select>
+
+    <select id="findDepAll" resultType="Department">
+        select * from sys_department
+    </select>
+
+    <select id="selectDepPage" resultType="Department">
+        select * from sys_department ${ew.customSqlSegment}
+    </select>
+
+
+    <insert id="addDep" parameterType="Department">
+        insert into sys_department
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            dep_id,
+            <if test="depName != null and depName != ''">
+                dep_name,
+            </if>
+        </trim>
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
+            #{depId},
+            <if test="depName != null and depName != ''">
+                #{depName},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateDepById" parameterType="Department">
+        update sys_department
+        <set>
+            <if test="depName != null and depName != ''">
+                dep_name=#{depName},
+            </if>
+        </set>
+        where dep_id=#{depId}
+    </update>
+
+    <delete id="deleteDepById"  parameterType="Department">
+        delete from sys_department where dep_id=#{depId}
+    </delete>
+
+</mapper>

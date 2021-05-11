@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>excel表格请假信息导出页面</title>
+
+    <div th:replace="common/common.html :: common_resource"></div>
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5> 导出excel表格</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="user_me.html#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <form th:action="@{/zjh/excel/UserExcelDownloads}" method="post" class="form-horizontal m-t" id="signupForm" >
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">班级筛选：</label>
+                        <div class="col-sm-5">
+                            <select class="form-control" name="classId">
+                                <option value="">请选择班级</option>
+                                <span th:each="class : ${session.classesList}">
+                                    <option th:value="${class.getClassId()}" th:text="${class.getClassName()}" hassubinfo="true">文本</option>
+                                </span>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-3">
+                            <button style="width:120px;" class="btn btn-primary" type="submit">导出excel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

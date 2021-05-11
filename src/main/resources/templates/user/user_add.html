@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>用户新增/修改弹窗页面</title>
+
+    <div th:replace="common/common.html :: common_resource"></div>
+
+</head>
+
+<body class="gray-bg">
+
+<div th:fragment="addUser">
+<div id="modal-form" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog" style="width:64%;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-2 b-r"></div>
+                    <div class="col-sm-5 b-l">
+                        <h3 class="m-t-none m-b" style="margin-bottom:30px"><i class="fa fa-paste"></i> 新增(修改) 用户信息</h3>
+
+                        <form th:action="@{/zjh/user/addEditUser}" method="post">
+                            <div class="form-group">
+                                <label>用户名：</label>
+                                <input type="text" id="userId" name="userId" placeholder="请输入用户名" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>请选择姓名：</label>
+                                <div>
+                                    <label class="radio-inline">
+                                        <input style="margin-top:2px;" type="radio" value="超级管理员" id="fullName1" name="fullName">超级管理员</label>
+                                    <label class="radio-inline">
+                                        <input style="margin-top:2px;" type="radio" value="辅导员" id="fullName2" name="fullName">辅导员</label>
+                                    <label class="radio-inline">
+                                        <input style="margin-top:2px;" type="radio" value="学生" id="fullName3" name="fullName">学生</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>密码：</label>
+                                <input type="text" id="password" name="password" placeholder="请输入密码" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>电话：</label>
+                                <input type="text" id="telephone" name="telephone" placeholder="请输入电话" class="form-control">
+                            </div>
+                            <div style="margin-top:20px;">
+                                <button style="width:100px;margin-top:15px;margin-bottom:30px;"
+                                        class="btn btn-sm btn-primary pull-left m-t-n-xs" type="submit">
+                                    <strong>提交</strong>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-5 b-l"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+
+</html>

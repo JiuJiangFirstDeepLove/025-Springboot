@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>辅导员信息显示页面</title>
+
+    <div th:replace="common/common.html :: common_resource"></div>
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>辅导员信息表格</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="instructor_list.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 3D立体按钮在button的class中加入 dim -->
+                    <div class="ibox-content" style="margin-bottom:50px">
+                        <div class="row">
+                            <div class="col-sm-3 m-b-xs">
+                                <a data-toggle="modal" href="instructor_list.html#modal-form" onclick="addForm()">
+                                    <button style="width:130px" class="btn btn-outline btn-primary" type="button">
+                                        <i class="fa fa-plus"></i> 新增辅导员
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover" >
+                                <thead>
+                                    <tr style="size:24px;height:60px">
+                                        <th style="text-align:center;width:20%">辅导员工号</th>
+                                        <th style="text-align:center;width:20%">辅导员姓名</th>
+                                        <th style="text-align:center;width:20%">二级学院编号</th>
+                                        <th style="text-align:center;width:20%">联系电话</th>
+                                        <th style="text-align:center;width:20%">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="text-align:center;size:18px">
+                                    <tr th:each="instructor : ${instructorList}">
+                                        <td th:text="${instructor.instId}">辅导员工号</td>
+                                        <td th:text="${instructor.instName}">辅导员姓名</td>
+                                        <td th:text="${instructor.depId}">二级学院编号</td>
+                                        <td th:text="${instructor.telephone}">联系电话</td>
+                                        <td>
+                                            <a data-toggle="modal" href="instructor_list.html#modal-form"
+                                               th:data-instId="${instructor.instId}"
+                                               th:data-instName="${instructor.instName}"
+                                               th:data-depId="${instructor.depId}"
+                                               th:data-telephone="${instructor.telephone}"
+                                               onclick="editForm(this.getAttribute('data-instId'),
+                                               this.getAttribute('data-instName'),
+                                               this.getAttribute('data-depId'),
+                                               this.getAttribute('data-telephone'))">
+                                                <button style="margin-top:10px" class="btn btn-outline btn-success" type="button">
+                                                    <i class="fa fa-paste"></i> 修改
+                                                </button>
+                                            </a>
+                                            <a th:href="@{/zjh/instructor/deleteInstructorById(instId = ${instructor.instId})}">
+                                                <button style="margin-top:10px" class="btn btn-outline btn-danger " type="button" >
+                                                    <i class="fa fa-warning"></i> 删除
+                                                </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-sm-6">
+                                <div style="size:18px" class="dataTables_info" id="editable_info" role="alert" aria-live="polite" aria-relevant="all">
+                                    显示 <span th:text="(${page.current}-1)*6+1"/> 到 <span th:text="${page.current*6}"/> 项, 共 <span th:text="${numberPages}"/> 项
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_simple_numbers" id="editable_paginate">
+                                    <span class="pagination">
+                                        <!--
+                                              gt：great than（大于）
+                                              ge：great equal（大于等于）
+                                              eq：equal（等于）
+                                              lt：less than（小于）
+                                              le：less equal（小于等于）
+                                              ne：not equal（不等于）
+                                        -->
+                                        <li class="paginate_button previous" aria-controls="editable" tabindex="0" id="editable_start">
+                                            <a th:href="@{/zjh/instructor/nextPage}">首页</a>
+                                        </li>
+                                        <li class="paginate_button previous" aria-controls="editable" tabindex="0" id="editable_previous"
+                                            th:switch="${page.current} gt 1">
+                                            <a th:case="true" th:href="@{/zjh/instructor/nextPage(pageNumber = ${page.current}-1)}">上一页</a>
+                                            <a th:case="false" th:href="@{javascript:alert('已经是第一页')}">上一页</a>
+                                        </li>
+                                        <li th:if="${page.current} gt 3">
+                                            . . .
+                                        </li>
+                                    </span>
+                                    <span class="pagination" th:each="status,iterStat:${pagesList}"
+                                          th:switch="${page.current eq iterStat.count}">
+                                        <li class="paginate_button active disabled" aria-controls="editable" tabindex="0" th:case="true">
+                                            <span th:text="${iterStat.count}"></span>
+                                        </li>
+                                        <li class="paginate_button" aria-controls="editable" tabindex="0" th:case="false" th:if="${page.current} ne ${iterStat.count}">
+                                            <a th:if="${page.current + 2 >= iterStat.count && page.current - 2 <= iterStat.count}"
+                                               th:href="@{/zjh/instructor/nextPage(pageNumber = ${iterStat.count})}">
+                                                <span th:text="${iterStat.count}"></span>
+                                            </a>
+                                        </li>
+                                    </span>
+                                    <span class="pagination">
+                                        <li th:if="${pages - page.current} gt 2">
+                                            . . .
+                                        </li>
+                                        <li class="paginate_button next" aria-controls="editable" tabindex="0" id="editable_end"
+                                            th:switch="${page.current} lt ${pages}">
+                                            <a th:case="true" th:href="@{/zjh/instructor/nextPage(pageNumber = ${page.current}+1)}">下一页</a>
+                                            <a th:case="false" th:href="@{javascript:alert('已经是最后一页')}">下一页</a>
+                                        </li>
+                                        <li >
+                                            <a th:href="@{/zjh/instructor/nextPage(pageNumber = ${pages})}">尾页</a>
+                                        </li>
+                                    </span>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div th:include="instructor/instructor_add.html :: addInstructor"></div>
+
+</body>
+<script type="text/javascript">
+    function addForm() {
+        document.getElementById("instId").value = '';
+        document.getElementById("instName").value = '';
+        $("#selects").prop("selected",true);
+        document.getElementById("telephone").value = '';
+        document.getElementById('instId').readOnly = false;
+    }
+    function editForm(instId, instName, depId, telephone) {
+        document.getElementById("instId").value = instId;
+        document.getElementById("instName").value = instName;
+        $("#" + depId).prop("selected",true);
+        document.getElementById("telephone").value = telephone;
+        document.getElementById('instId').readOnly = true;
+    }
+</script>
+<script type="text/javascript">
+    window.onload=function(){
+        console.log("参数: " + '[[${session.result}]]')
+        switch ("[[${session.result}]]") {
+            case "addTrue":
+                Message('success', '√ -添加成功!!!', 2000);
+                break;
+            case "addFalse":
+                Message('error', 'x -添加失败,已存在该信息!!!', 2000);
+                break;
+            case "editTrue":
+                Message('success', '√ -修改成功!!!', 2000);
+                break;
+            case "editFalse":
+                Message('error', 'x -修改失败!!!', 2000);
+                break;
+            case "deleteTrue":
+                Message('success', '√ -删除成功!!!', 2000);
+                break;
+            default:
+                break;
+        }
+        if(0 == "[[${pages}]]"){
+            Message('error', '数据数量为零!!!', 2000);
+        }
+
+    };
+</script>
+</html>

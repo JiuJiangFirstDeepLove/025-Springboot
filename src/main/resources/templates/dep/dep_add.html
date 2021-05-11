@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>二级学院新增/修改弹窗页面</title>
+
+    <div th:replace="common/common.html :: common_resource"></div>
+
+</head>
+
+<body class="gray-bg">
+
+<div th:fragment="addDep">
+<div id="modal-form" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog" style="width:64%;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-2 b-r"></div>
+                    <div class="col-sm-5 b-l">
+                        <h3 class="m-t-none m-b" style="margin-bottom:30px"><i class="fa fa-paste"></i> 新增(修改) 二级学院信息</h3>
+
+                        <form th:action="@{/zjh/dep/addEditDep}" method="post">
+                            <div class="form-group">
+                                <label>二级学院编号：</label>
+                                <input type="text" id="depId" name="depId" placeholder="请输入二级学院编号" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>二级学院名称：</label>
+                                <input type="text" id="depName" name="depName" placeholder="请输入二级学院名称" class="form-control">
+                            </div>
+                            <div style="margin-top:20px;">
+                                <button style="width:100px;margin-top:15px;margin-bottom:30px;"
+                                        class="btn btn-sm btn-primary pull-left m-t-n-xs" type="submit">
+                                    <strong>提交</strong>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-5 b-l"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gxuwz.zjh.mapper.CourseMapper">
+
+    <select id="findCourseById" resultType="Course" parameterType="Course">
+        select * from sys_course where course_id = #{courseId}
+    </select>
+
+    <select id="findCourseAll" resultType="Course">
+        select * from sys_course
+    </select>
+
+    <select id="selectCoursePage" resultType="Course">
+        select * from sys_course ${ew.customSqlSegment}
+    </select>
+
+
+    <insert id="addCourse" parameterType="Course">
+        insert into sys_course
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            course_id,
+            <if test="classId != null and classId != ''">
+                class_id,
+            </if>
+            <if test="courseName != null and courseName != ''">
+                course_name,
+            </if>
+            <if test="year != null and year != ''">
+                year,
+            </if>
+            <if test="term != null and term != ''">
+                term,
+            </if>
+            <if test="hour != null">
+                hour,
+            </if>
+        </trim>
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
+            #{courseId},
+            <if test="classId != null and classId != ''">
+                #{classId},
+            </if>
+            <if test="courseName != null and courseName != ''">
+                #{courseName},
+            </if>
+            <if test="year != null and year != ''">
+                #{year},
+            </if>
+            <if test="term != null and term != ''">
+                #{term},
+            </if>
+            <if test="hour != null">
+                #{hour},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateCourseById" parameterType="Course">
+        update sys_course
+        <set>
+            <if test="classId != null and classId != ''">
+                class_id=#{classId},
+            </if>
+            <if test="courseName != null and courseName != ''">
+                course_name=#{courseName},
+            </if>
+            <if test="year != null and year != ''">
+                year= #{year},
+            </if>
+            <if test="term != null and term != ''">
+                term=#{term},
+            </if>
+            <if test="hour != null">
+                hour=#{hour},
+            </if>
+        </set>
+        where course_id=#{courseId}
+    </update>
+
+    <delete id="deleteCourseById"  parameterType="Course">
+        delete from sys_course where course_id=#{courseId}
+    </delete>
+    
+</mapper>

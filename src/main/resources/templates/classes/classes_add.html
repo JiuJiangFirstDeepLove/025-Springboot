@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>班级新增/修改弹窗页面</title>
+
+    <div th:replace="common/common.html :: common_resource"></div>
+
+</head>
+
+<body class="gray-bg">
+
+<div th:fragment="addClasses">
+<div id="modal-form" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog" style="width:64%;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-2 b-r"></div>
+                    <div class="col-sm-5 b-l">
+                        <h3 class="m-t-none m-b" style="margin-bottom:30px"><i class="fa fa-paste"></i> 新增(修改) 班级信息</h3>
+
+                        <form th:action="@{/zjh/classes/addEditClasses}" method="post">
+                            <div class="form-group">
+                                <label>班级编号：</label>
+                                <input type="text" id="classId" name="classId" placeholder="请输入班级编号" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>班级名称：</label>
+                                <input type="text" id="className" name="className" placeholder="请输入班级名称" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">二级学院：</label>
+                                <div>
+                                    <select class="form-control" name="depId">
+                                        <option id="selects" value="">请选择二级学院</option>
+                                        <span th:each="dep : ${session.deptList}">
+                                            <option th:id="${dep.getDepId()}" th:value="${dep.getDepId()}" th:text="${dep.getDepName()}" hassubinfo="true">文本</option>
+                                        </span>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>专业：</label>
+                                <input type="text" id="major" name="major" placeholder="请输入专业" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>年级：</label>
+                                <input type="text" id="grade" name="grade" placeholder="请输入年级" class="form-control">
+                            </div>
+                            <div style="margin-top:20px;">
+                                <button style="width:100px;margin-top:15px;margin-bottom:30px;"
+                                        class="btn btn-sm btn-primary pull-left m-t-n-xs" type="submit">
+                                    <strong>提交</strong>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-5 b-l"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+
+</html>

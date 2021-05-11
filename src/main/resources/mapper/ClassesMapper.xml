@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gxuwz.zjh.mapper.ClassesMapper">
+
+    <select id="findClassesById" resultType="Classes" parameterType="Classes">
+        select * from classes where class_id = #{classId}
+    </select>
+
+    <select id="findClassesAll" resultType="Classes">
+        select * from classes
+    </select>
+
+    <select id="selectClassesPage" resultType="Classes">
+        select * from classes ${ew.customSqlSegment}
+    </select>
+
+
+    <insert id="addClasses" parameterType="Classes">
+        insert into classes
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            class_id,
+            <if test="className != null and className != ''">
+                class_name,
+            </if>
+            <if test="depId != null and depId != ''">
+                dep_id,
+            </if>
+            <if test="major != null and major != ''">
+                major,
+            </if>
+            <if test="grade != null and grade != ''">
+                grade,
+            </if>
+        </trim>
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
+            #{classId},
+            <if test="className != null and className != ''">
+                #{className},
+            </if>
+            <if test="depId != null and depId != ''">
+                #{depId},
+            </if>
+            <if test="major != null and major != ''">
+                #{major},
+            </if>
+            <if test="grade != null and grade != ''">
+                #{grade},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateClassesById" parameterType="Classes">
+        update classes
+        <set>
+            <if test="className != null and className != ''">
+                class_name=#{className},
+            </if>
+            <if test="depId != null and depId != ''">
+                dep_id=#{depId},
+            </if>
+            <if test="major != null and major != ''">
+                major=#{major},
+            </if>
+            <if test="grade != null and grade != ''">
+                grade=#{grade},
+            </if>
+        </set>
+        where class_id=#{classId}
+    </update>
+
+    <delete id="deleteClassesById"  parameterType="Classes">
+        delete from classes where class_id=#{classId}
+    </delete>
+
+</mapper>

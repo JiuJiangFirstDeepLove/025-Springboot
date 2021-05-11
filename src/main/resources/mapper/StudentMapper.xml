@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gxuwz.zjh.mapper.StudentMapper">
+
+    <select id="findStudentById" resultType="Student" parameterType="Student">
+        select * from sys_student where stu_id = #{stuId}
+    </select>
+
+    <select id="findStudentByClassId" resultType="Student" parameterType="Student">
+        select * from sys_student where class_id = #{classId}
+    </select>
+
+    <select id="findStudentAll" resultType="Student">
+        select * from sys_student
+    </select>
+
+    <select id="selectStudentPage" resultType="Student">
+        select * from sys_student ${ew.customSqlSegment}
+    </select>
+
+
+    <insert id="addStudent" parameterType="Student">
+        insert into sys_student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            stu_id,
+            <if test="classId != null and classId != ''">
+                class_id,
+            </if>
+            <if test="stuName != null and stuName != ''">
+                stu_name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="address != null and address != ''">
+                address,
+            </if>
+            <if test="stuTel != null and stuTel != ''">
+                stu_tel,
+            </if>
+            <if test="contact != null and contact != ''">
+                contact,
+            </if>
+            <if test="contactTel != null and contactTel != ''">
+                contact_tel,
+            </if>
+        </trim>
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
+            #{stuId},
+            <if test="classId != null and classId != ''">
+                #{classId},
+            </if>
+            <if test="stuName != null and stuName != ''">
+                #{stuName},
+            </if>
+            <if test="sex != null">
+                #{sex},
+            </if>
+            <if test="address != null and address != ''">
+                #{address},
+            </if>
+            <if test="stuTel != null and stuTel != ''">
+                #{stuTel},
+            </if>
+            <if test="contact != null and contact != ''">
+                #{contact},
+            </if>
+            <if test="contactTel != null and contactTel != ''">
+                #{contactTel},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateStudentById" parameterType="Student">
+        update sys_student
+        <set>
+            <if test="classId != null and classId != ''">
+                class_id=#{classId},
+            </if>
+            <if test="stuName != null and stuName != ''">
+                stu_name=#{stuName},
+            </if>
+            <if test="sex != null">
+                sex= #{sex},
+            </if>
+            <if test="address != null and address != ''">
+                address=#{address},
+            </if>
+            <if test="stuTel != null and stuTel != ''">
+                stu_tel=#{stuTel},
+            </if>
+            <if test="contact != null and contact != ''">
+                contact=#{contact},
+            </if>
+            <if test="contactTel != null and contactTel != ''">
+                contact_tel=#{contactTel},
+            </if>
+        </set>
+        where stu_id=#{stuId}
+    </update>
+
+    <delete id="deleteStudentById"  parameterType="Student">
+        delete from sys_student where stu_id=#{stuId}
+    </delete>
+
+</mapper>

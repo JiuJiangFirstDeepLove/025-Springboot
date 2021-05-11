@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>学生请假信息新增弹窗页面</title>
+
+    <div th:replace="common/common.html :: common_resource"></div>
+
+</head>
+
+<body class="gray-bg">
+
+<div th:fragment="addLeave">
+<div id="modal-form" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog" style="width:64%;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-2 b-r"></div>
+                    <div class="col-sm-5 b-l">
+                        <h3 class="m-t-none m-b" style="margin-bottom:30px"><i class="fa fa-paste"></i> 学生申请请假信息</h3>
+
+                        <form th:action="@{/zjh/leave/addEditLeave(index=3)}" method="post">
+                            <div class="form-group">
+                                <label>请假编号：</label>
+                                <input type="text" id="leaveId" name="leaveId" placeholder="请输入请假编号" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">课程：</label>
+                                <div>
+                                    <select class="form-control" name="courseId">
+                                        <option id="selects" value="">请选择课程</option>
+                                        <span th:each="course : ${session.courseList}">
+                                            <option th:id="${course.getCourseId()}" th:value="${course.getCourseId()}" th:text="${course.getCourseName()}" hassubinfo="true">文本</option>
+                                        </span>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>请假理由：</label>
+                                <input type="text" id="reason" name="reason" placeholder="请输入请假理由" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>天数：</label>
+                                <input type="number" id="dayNum" name="dayNum" placeholder="请输入天数" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>学号：</label>
+                                <input type="text" id="stuNo" name="stuNo" placeholder="请输入学号" class="form-control" th:value="${session.user.userId}">
+                            </div>
+                            <div class="form-group">
+                                <label>请假时间：</label>
+                                <input type="text" id="applyTime" name="applyTime" placeholder="请输入请假时间" class="form-control">
+                            </div>
+                            <script>
+                            layui.use('laydate', function(){
+                                    var laydate = layui.laydate;
+
+                                    //执行一个laydate实例
+                                    laydate.render({
+                                        elem: '#applyTime', //指定元素
+                                        type: 'datetime'
+                                    });
+                                    laydate.render({
+                                        elem: '#auditTime', //指定元素
+                                        type: 'datetime'
+                                    });
+                                });
+                            </script>
+                            <div style="margin-top:20px;">
+                                <button style="width:100px;margin-top:15px;margin-bottom:30px;"
+                                        class="btn btn-sm btn-primary pull-left m-t-n-xs" type="submit">
+                                    <strong>提交</strong>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-5 b-l"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+
+</html>

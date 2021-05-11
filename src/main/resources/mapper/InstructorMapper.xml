@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gxuwz.zjh.mapper.InstructorMapper">
+
+    <select id="findInstructorById" resultType="Instructor" parameterType="Instructor">
+        select * from instructor where inst_id = #{instId}
+    </select>
+
+    <select id="findInstructorAll" resultType="Instructor">
+        select * from instructor
+    </select>
+
+    <select id="selectInstructorPage" resultType="Instructor">
+        select * from sys_instructor ${ew.customSqlSegment}
+    </select>
+
+
+    <insert id="addInstructor" parameterType="Instructor">
+        insert into sys_instructor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            inst_id,
+            <if test="instName != null and instName != ''">
+                inst_name,
+            </if>
+            <if test="depId != null and depId != ''">
+                dep_id,
+            </if>
+            <if test="telephone != null and telephone != ''">
+                telephone,
+            </if>
+        </trim>
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
+            #{instId},
+            <if test="instName != null and instName != ''">
+                #{instName},
+            </if>
+            <if test="depId != null and depId != ''">
+                #{depId},
+            </if>
+            <if test="telephone != null and telephone != ''">
+                #{telephone},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateInstructorById" parameterType="Instructor">
+        update sys_instructor
+        <set>
+            <if test="instName != null and instName != ''">
+                inst_name=#{instName},
+            </if>
+            <if test="depId != null and depId != ''">
+                dep_id=#{depId},
+            </if>
+            <if test="telephone != null and telephone != ''">
+                telephone=#{telephone},
+            </if>
+        </set>
+        where inst_id=#{instId}
+    </update>
+
+    <delete id="deleteInstructorById"  parameterType="Instructor">
+        delete from sys_instructor where inst_id=#{instId}
+    </delete>
+    
+</mapper>
