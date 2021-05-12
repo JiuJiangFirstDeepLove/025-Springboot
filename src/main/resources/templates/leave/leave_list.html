@@ -172,7 +172,11 @@
 </body>
 <script type="text/javascript">
     function addForm() {
-        document.getElementById("leaveId").value = '';
+        var timestamp = new Date().getTime();
+        console.log("timestamp = " + timestamp);
+        var mun = parseInt(Math.random()*900 + 100) + "";
+        console.log("mun = " + mun);
+        document.getElementById("leaveId").value = 'WZ' + timestamp + mun;
         $("#selects").prop("selected",true);
         document.getElementById("reason").value = '';
         document.getElementById("dayNum").value = '';
@@ -181,7 +185,7 @@
         document.getElementById("status").value = '';
         document.getElementById("auditTime").value = '';
         document.getElementById("opinion").value = '';
-        document.getElementById('leaveId').readOnly = false;
+        document.getElementById('leaveId').readOnly = true;
     }
     function editForm(leaveId, courseId, reason, dayNum, stuNo, applyTime, status, auditTime, opinion) {
         document.getElementById("leaveId").value = leaveId;

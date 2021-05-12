@@ -157,6 +157,21 @@
 
 </body>
 <script type="text/javascript">
+    function addForm() {
+        var timestamp = new Date().getTime();
+        console.log("timestamp = " + timestamp);
+        var mun = parseInt(Math.random()*900 + 100) + "";
+        console.log("mun = " + mun);
+        document.getElementById("leaveId").value = 'WZ' + timestamp + mun;
+        $("#selects").prop("selected",true);
+        document.getElementById("reason").value = '';
+        document.getElementById("dayNum").value = '';
+        document.getElementById("stuNo").value = '';
+        document.getElementById("applyTime").value = '';
+        document.getElementById('leaveId').readOnly = true;
+    }
+</script>
+<script type="text/javascript">
     window.onload=function(){
         console.log("参数: " + '[[${result}]]')
         switch ("[[${session.result}]]") {
