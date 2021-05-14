@@ -29,7 +29,9 @@
                     <div class="ibox-content" style="margin-bottom:50px">
                         <div class="row">
                             <div class="col-sm-3 m-b-xs">
-                                <a data-toggle="modal" href="leave_list.html#modal-form" onclick="addForm()">
+                                <a data-toggle="modal" href="leave_list.html#modal-form"
+                                   th:data-stuNo="${session.user.userId}"
+                                   onclick="addForm(this.getAttribute('data-stuNo'))">
                                     <button style="width:130px" class="btn btn-outline btn-primary" type="button">
                                         <i class="fa fa-plus"></i> 申请请假
                                     </button>
@@ -157,7 +159,7 @@
 
 </body>
 <script type="text/javascript">
-    function addForm() {
+    function addForm(stuNo) {
         var timestamp = new Date().getTime();
         console.log("timestamp = " + timestamp);
         var mun = parseInt(Math.random()*900 + 100) + "";
@@ -166,9 +168,10 @@
         $("#selects").prop("selected",true);
         document.getElementById("reason").value = '';
         document.getElementById("dayNum").value = '';
-        document.getElementById("stuNo").value = '';
+        document.getElementById("stuNo").value = stuNo;
         document.getElementById("applyTime").value = '';
         document.getElementById('leaveId').readOnly = true;
+        document.getElementById('stuNo').readOnly = true;
     }
 </script>
 <script type="text/javascript">
