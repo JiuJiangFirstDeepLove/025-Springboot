@@ -55,7 +55,11 @@
                                 <tbody style="text-align:center;size:18px">
                                     <tr th:each="leave : ${leaveList}">
                                         <td th:text="${leave.leaveId}">请假编号</td>
-                                        <td th:text="${leave.courseId}">课程编码</td>
+                                        <span th:each="course : ${session.courseList}">
+                                            <span th:if="${course.courseId eq leave.courseId}">
+                                                <td th:text="${course.courseName}">课程编码</td>
+                                            </span>
+                                        </span>
                                         <td th:text="${leave.reason}">请假理由</td>
                                         <td th:text="${leave.dayNum}">天数</td>
                                         <td th:text="${leave.stuNo}">学号</td>
