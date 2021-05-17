@@ -27,12 +27,22 @@
                     </div>
                     <div class="ibox-content" style="margin-bottom:50px">
                         <div class="row">
-                            <div class="col-sm-3 m-b-xs">
+                            <div class="col-sm-2 m-b-xs">
                                 <a data-toggle="modal" href="test_list.html#modal-form" onclick="addForm()">
                                     <button style="width:130px" class="btn btn-outline btn-primary" type="button">
                                         <i class="fa fa-plus"></i> 新增
                                     </button>
                                 </a>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input style="height:35px;" type="text" placeholder="请输入关键词" id="keywords"
+                                           class="input-sm form-control">
+                                    <span class="input-group-btn">
+                                        <button style="height:35px;width:80px;" type="button" class="btn btn-sm btn-primary"
+                                                href="javascript:;" onclick="query()"> 搜索</button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="table-responsive">

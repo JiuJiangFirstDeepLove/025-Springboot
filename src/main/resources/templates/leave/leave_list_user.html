@@ -28,7 +28,7 @@
                     <!-- 3D立体按钮在button的class中加入 dim -->
                     <div class="ibox-content" style="margin-bottom:50px">
                         <div class="row">
-                            <div class="col-sm-3 m-b-xs">
+                            <div class="col-sm-2 m-b-xs">
                                 <a data-toggle="modal" href="leave_list.html#modal-form"
                                    th:data-stuNo="${session.user.userId}"
                                    onclick="addForm(this.getAttribute('data-stuNo'))">
@@ -37,6 +37,22 @@
                                     </button>
                                 </a>
                             </div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input style="height:35px;" type="text" placeholder="请输入关键词" id="keywords"
+                                           class="input-sm form-control">
+                                    <span class="input-group-btn">
+                                        <button style="height:35px;width:80px;" type="button" class="btn btn-sm btn-primary"
+                                                href="javascript:;" onclick="query()"> 搜索</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                // 模糊查询
+                                function query() {
+                                    window.location.href = "/zjh/leave/findLeaveById?index=3&leaveId=" + $("#keywords").val() + "";
+                                }
+                            </script>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover" >
