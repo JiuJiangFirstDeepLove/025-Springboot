@@ -3,6 +3,12 @@
 #### 介绍
 springboot+thymeleaf 的一个请假系统
 
+#### 项目部署
+
+1. 将项目导入到idea中
+2. 修改数据库配置文件
+3. 修改maven路径并刷新maven仓库
+
 #### 页面展示
 
 <table>
