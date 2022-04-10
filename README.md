@@ -1,5 +1,8 @@
 # SpringBoot+thymeleaf 请假系统
 
+#### 注意
+带有数据内容的数据库在“lssues”的提问中，可以在“已完成”中进行查看。
+
 #### 介绍
 springboot+thymeleaf 的一个请假系统
 
