@@ -12,6 +12,9 @@ springboot+thymeleaf 的一个请假系统
 2. 修改数据库配置文件
 3. 修改maven路径并刷新maven仓库
 
+#### 数据库
+点击上方导航栏的 lssues ，然后点击"已完成"进行数据库详情查看。
+
 #### 页面展示
 
 <table>
