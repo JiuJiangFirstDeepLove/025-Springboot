@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gxuwz.zjh.mapper.LeaveMapper">
+<mapper namespace="com.baidu.leave.dao.LeaveMapper">
 
     <select id="findLeaveById" resultType="Leave" parameterType="Leave">
-        select * from sys_leave where leave_id = #{leaveId}
+        select * from t_leave where leave_id = #{leaveId}
     </select>
 
     <select id="findLeaveByStuNo" resultType="Leave" parameterType="Leave">
-        select * from sys_leave where stu_no = #{stuNo}
+        select * from t_leave where stu_no = #{stuNo}
     </select>
 
     <select id="findLeaveAll" resultType="Leave">
-        select * from sys_leave
+        select * from t_leave
     </select>
 
     <select id="selectLeavePage" resultType="Leave">
-        select * from sys_leave ${ew.customSqlSegment}
+        select * from t_leave ${ew.customSqlSegment}
     </select>
 
-
     <insert id="addLeave" parameterType="Leave">
-        insert into sys_leave
+        insert into t_leave
         <trim prefix="(" suffix=")" suffixOverrides=",">
             leave_id,
             <if test="courseId != null and courseId != ''">
@@ -78,7 +77,7 @@
     </insert>
 
     <update id="updateLeaveById" parameterType="Leave">
-        update sys_leave
+        update t_leave
         <set>
             <if test="courseId != null and courseId != ''">
                 course_id=#{courseId},
@@ -109,7 +108,7 @@
     </update>
 
     <delete id="deleteLeaveById"  parameterType="Leave">
-        delete from sys_leave where leave_id=#{leaveId}
+        delete from t_leave where leave_id=#{leaveId}
     </delete>
 
 </mapper>

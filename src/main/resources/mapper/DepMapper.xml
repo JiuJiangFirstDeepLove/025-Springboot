@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gxuwz.zjh.mapper.DepMapper">
+<mapper namespace="com.baidu.leave.dao.DepMapper">
 
     <select id="findDepById" resultType="Department" parameterType="Department">
-        select * from sys_department where dep_id = #{depId}
+        select * from department where dep_id = #{depId}
     </select>
 
     <select id="findDepAll" resultType="Department">
-        select * from sys_department
+        select * from department
     </select>
 
     <select id="selectDepPage" resultType="Department">
-        select * from sys_department ${ew.customSqlSegment}
+        select * from department ${ew.customSqlSegment}
     </select>
 
 
     <insert id="addDep" parameterType="Department">
-        insert into sys_department
+        insert into department
         <trim prefix="(" suffix=")" suffixOverrides=",">
             dep_id,
             <if test="depName != null and depName != ''">
@@ -32,7 +32,7 @@
     </insert>
 
     <update id="updateDepById" parameterType="Department">
-        update sys_department
+        update department
         <set>
             <if test="depName != null and depName != ''">
                 dep_name=#{depName},
@@ -42,7 +42,7 @@
     </update>
 
     <delete id="deleteDepById"  parameterType="Department">
-        delete from sys_department where dep_id=#{depId}
+        delete from department where dep_id=#{depId}
     </delete>
 
 </mapper>

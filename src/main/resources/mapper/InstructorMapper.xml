@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gxuwz.zjh.mapper.InstructorMapper">
+<mapper namespace="com.baidu.leave.dao.InstructorMapper">
 
     <select id="findInstructorById" resultType="Instructor" parameterType="Instructor">
         select * from instructor where inst_id = #{instId}
@@ -11,14 +11,14 @@
     </select>
 
     <select id="selectInstructorPage" resultType="Instructor">
-        select * from sys_instructor ${ew.customSqlSegment}
+        select * from instructor ${ew.customSqlSegment}
     </select>
 
 
     <insert id="addInstructor" parameterType="Instructor">
-        insert into sys_instructor
+        insert into instructor
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            inst_id,
+               inst_id,
             <if test="instName != null and instName != ''">
                 inst_name,
             </if>
@@ -44,7 +44,7 @@
     </insert>
 
     <update id="updateInstructorById" parameterType="Instructor">
-        update sys_instructor
+        update instructor
         <set>
             <if test="instName != null and instName != ''">
                 inst_name=#{instName},
@@ -60,7 +60,7 @@
     </update>
 
     <delete id="deleteInstructorById"  parameterType="Instructor">
-        delete from sys_instructor where inst_id=#{instId}
+        delete from instructor where inst_id=#{instId}
     </delete>
     
 </mapper>

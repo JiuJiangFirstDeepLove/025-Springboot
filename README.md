@@ -1,33 +1,67 @@
-# SpringBoot+thymeleaf 请假系统
+# 基于Springboot的学生请假管理系统 
 
-#### 注意
-带有数据内容的数据库在“lssues”的提问中，可以在“已完成”中进行查看。
+# Springboot-025
 
-#### 介绍
-springboot+thymeleaf 的一个请假系统
+### 技术栈
 
-#### 项目部署
+springboot mybatis  thymeleaf 
 
-1. 将项目导入到idea中
-2. 修改数据库配置文件
-3. 修改maven路径并刷新maven仓库
+##  数据库
 
-#### 数据库
-在Wiki中进行查看
+mysql (7张表)
 
-#### 页面展示
 
-<table>
-    <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2022/0321/172227_bceb4c5d_5478041.png "登录.png""/></td>
-        <td><img src="https://images.gitee.com/uploads/images/2022/0321/172237_afcd48cf_5478041.png "用户信息.png""/></td>
-    </tr>
-    <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2022/0321/172251_8ac4e41c_5478041.png "请假申请.png""/></td>
-        <td><img src="https://images.gitee.com/uploads/images/2022/0321/172256_9efdd241_5478041.png "请假记录.png""/></td>
-    </tr>
-    <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2022/0321/172304_e1c56d77_5478041.png "请假信息管理.png""/></td>
-        <td><img src="https://images.gitee.com/uploads/images/2022/0321/172310_753ddf98_5478041.png "请假信息修改.png""/></td>
-    </tr>
-</table>
+
+## 运行截图
+
+### 前台
+
+### 后台
+
+![1688642409609](./images/1.jpg)![1688642431528](./images/2.jpg)![1688642440164](./images/3.jpg)![1688642449861](./images/4.jpg)![1688642488417](./images/5.jpg)
+
+![1688642512574](./images/6.jpg)![1688642534905](./images/7.jpg)![1688642549057](./images/8.jpg)
+
+![1688642565881](./images/9.jpg)
+
+![1688642565881](./images/10.jpg)
+
+![1688642565881](./images/11.jpg)
+
+![1688642565881](./images/12.jpg)![1688642565881](./images/13.jpg)
+
+![1688642565881](./images/14.jpg)![1688642565881](./images/15.jpg)![1688642565881](./images/17.jpg)![1688642565881](./images/16.jpg)
+
+
+
+
+
+## 需要看运行视频或源码
+
+```html
+见images目录下面的a.txt文件
+
+```
+
+
+
+## 访问网址
+
+### 前台
+
+```
+
+```
+
+### 后台
+
+```
+http://localhost:8088/
+
+账号 111
+密码 1111
+```
+
+
+
+

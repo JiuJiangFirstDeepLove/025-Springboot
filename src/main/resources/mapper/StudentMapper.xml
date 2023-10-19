@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gxuwz.zjh.mapper.StudentMapper">
+<mapper namespace="com.baidu.leave.dao.StudentMapper">
 
     <select id="findStudentById" resultType="Student" parameterType="Student">
-        select * from sys_student where stu_id = #{stuId}
+        select * from student where stu_id = #{stuId}
     </select>
 
     <select id="findStudentByClassId" resultType="Student" parameterType="Student">
-        select * from sys_student where class_id = #{classId}
+        select * from student where class_id = #{classId}
     </select>
 
     <select id="findStudentAll" resultType="Student">
-        select * from sys_student
+        select * from student
     </select>
 
     <select id="selectStudentPage" resultType="Student">
-        select * from sys_student ${ew.customSqlSegment}
+        select * from student ${ew.customSqlSegment}
     </select>
 
 
     <insert id="addStudent" parameterType="Student">
-        insert into sys_student
+        insert into student
         <trim prefix="(" suffix=")" suffixOverrides=",">
             stu_id,
             <if test="classId != null and classId != ''">
@@ -72,7 +72,7 @@
     </insert>
 
     <update id="updateStudentById" parameterType="Student">
-        update sys_student
+        update student
         <set>
             <if test="classId != null and classId != ''">
                 class_id=#{classId},
@@ -100,7 +100,7 @@
     </update>
 
     <delete id="deleteStudentById"  parameterType="Student">
-        delete from sys_student where stu_id=#{stuId}
+        delete from student where stu_id=#{stuId}
     </delete>
 
 </mapper>
